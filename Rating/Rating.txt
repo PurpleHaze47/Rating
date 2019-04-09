@@ -1,0 +1,51 @@
+<link href="<?=base_url();?>assests/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+
+<div style="margin: 40px 20px; cursor: pointer; color: orange; font-size: 30px">
+	<li class="fa fa-star-o" title="Not Fair" value="1"></li>
+	<li class="fa fa-star-o" title="Fair" value="2"></li>
+	<li class="fa fa-star-o" title="Good" value="3"></li>
+	<li class="fa fa-star-o" title="Excellent" value="4"></li>
+	<li class="fa fa-star-o" title="Awesome" value="5"></li>
+	<input type="hidden" id="a" name="rating_rate">
+
+<script type="text/javascript">
+	$('li').on('mouseover', function(){
+
+		/* fill stars */
+		for( var i = 1; i <= $(this).val(); i++){
+			$('li[value="'+i+'"]').removeAttr('class');
+			$('li[value="'+i+'"]').attr('class', 'fa fa-star');
+			$('li[value="'+i+'"]').css('text-shadow', '2px 2px 2px #aaa');
+		}
+		/* empty stars */
+		for( var i = $(this).val()+1; i <= 5; i++){
+			$('li[value="'+i+'"]').removeAttr('class');
+			$('li[value="'+i+'"]').attr('class', 'fa fa-star-o');
+			$('li[value="'+i+'"]').css('text-shadow', '4px 4px 4px white');
+		}
+
+	});
+
+$('li').mouseout( function(){
+	
+	for( var i = 1; i <= $('#a').val(); i++){
+		
+			$('li[value="'+i+'"]').removeAttr('class');
+			$('li[value="'+i+'"]').attr('class', 'fa fa-star');
+			$('li[value="'+i+'"]').css('text-shadow', '2px 2px 2px #aaa');
+		}
+		
+		for( var i = 5 ; i > $('#a').val(); i--){
+			
+			$('li[value="'+i+'"]').removeAttr('class');
+			$('li[value="'+i+'"]').attr('class', 'fa fa-star-o');
+			$('li[value="'+i+'"]').css('text-shadow', '4px 4px 4px white');
+		}
+});
+
+	$('li').on('click', function(){
+		$('#a').val($(this).val());
+		$('input[type="submit"]').removeAttr('disabled');
+	});	
+</script>
